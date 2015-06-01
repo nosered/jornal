@@ -57,6 +57,10 @@ public class UsuarioController {
 		resultado.redirectTo(IndexController.class).index();
 	}
 	
+	private void validarFormulario(Usuario usuario){
+		validador.validate(usuario, Usuario.class);
+	}
+	
 	@Post
 	public void login(Usuario usuario, Long papel){
 		Usuario usuarioCarregado = udao.autenticar(usuario);

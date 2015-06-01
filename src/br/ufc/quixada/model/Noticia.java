@@ -26,11 +26,15 @@ import javax.persistence.Table;
 public class Noticia {
 	@Id @GeneratedValue
 	private Long id;
+	@Column(nullable=false)
 	private String titulo;
+	@Column(nullable=false)
 	private String subtitulo;
-	@Column(columnDefinition="TEXT")
+	@Column(columnDefinition="TEXT", nullable=false)
 	private String texto;
+	@Column(nullable=false)
 	private Date data;
+	@Column(nullable=false)
 	private String imagem;
 	@ManyToOne(optional=false)
 	private Secao secao;

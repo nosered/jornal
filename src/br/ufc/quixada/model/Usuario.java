@@ -8,19 +8,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="usuarios")
-
+@NamedQueries({
+	@NamedQuery(name="usuario.porLogin",query="SELECT u FROM Usuario u WHERE u.login = :login"),
+	@NamedQuery(name="usuario.autenticar", query="SELECT u FROM Usuario u WHERE u.login = :login AND u.senha = :senha")
+})
 public class Usuario {
 	@Id @GeneratedValue
 	private Long id;
 	@Column(nullable=false ,unique=true)
 	private String login;
+	@Column(nullable=false)
 	private String senha;
+	@Column(nullable=false)
 	private String nome;
-	@Column(unique=true)
+	@Column(nullable=false, unique=true)
 	private String email;
 	@ManyToMany(cascade=CascadeType.PERSIST)
 	private List<Papel> papeis;

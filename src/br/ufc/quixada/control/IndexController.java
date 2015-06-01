@@ -24,14 +24,6 @@ public class IndexController {
 	@Inject
 	private Result resultado;
 	
-	public void home(){
-		List<Noticia> ultimas = ndao.listar();
-		Noticia primeira = ultimas.get(0);
-		resultado.include("primeira",primeira);
-		ultimas.remove(0);
-		resultado.include("ultimas",ultimas);
- 	}
-	
 	@Path("/")
 	public void index(){
 		menu.setSecoes(sdao.listar());

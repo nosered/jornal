@@ -1,5 +1,6 @@
 package br.ufc.quixada.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,9 @@ import javax.persistence.Table;
 public class Papel {
 	@Id @GeneratedValue
 	private Long id;
+	@Column(nullable=false)
 	private String descricao;
+	@Column(nullable=false)
 	private long nivel;
 	
 	public Long getId() {

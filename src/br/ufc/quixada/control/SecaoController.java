@@ -26,18 +26,11 @@ public class SecaoController {
 	public void formulario(){
 	}
 	
-	
+	@SimpleBrutauthRules(Autorizacao.class)
+	@AccessLevel(3000)
 	public void adicionar(Secao secao){
 		dao.adicionar(secao);
-		result.redirectTo(SecaoController.class).listar();
-	}
-	
-	public void atualizar(Secao secao){
-		dao.atualizar(secao);
-	}
-	
-	public void remover(Secao secao){
-		dao.remover(secao);
+		result.redirectTo(IndexController.class).index();
 	}
 	
 	public List<Secao> listar(){

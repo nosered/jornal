@@ -1,5 +1,6 @@
 package br.ufc.quixada.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +17,9 @@ public class Secao {
 	
 	@Id @GeneratedValue
 	private Long id;
+	@Column(nullable=false)
 	private String titulo;
+	@Column(nullable=false)
 	private String descricao;
 	
 	public Long getId() {

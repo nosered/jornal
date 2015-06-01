@@ -13,9 +13,13 @@ import javax.persistence.Table;
 public class Classificado {
 	@Id @GeneratedValue
 	private Long id;
+	@Column(nullable=false)
 	private String titulo;
+	@Column(nullable=false)
 	private String texto;
+	@Column(nullable=false)
 	private Double preco;
+	@Column(nullable=false)
 	private String contato;
 	@Column(name="valor_oferta")
 	private Double valorOferta;

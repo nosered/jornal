@@ -19,14 +19,6 @@ public class SecaoDAO implements ISecaoDAO{
 		manager.persist(secao);
 	}
 
-	public void atualizar(Secao secao) {
-		manager.merge(secao);
-	}
-
-	public void remover(Secao secao) {
-		manager.remove(secao);
-	}
-
 	public Secao buscar(Long id) {
 		return manager.find(Secao.class, id);
 	}
