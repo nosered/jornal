@@ -38,12 +38,13 @@ public class UsuarioController {
 	
 	@Post
 	public void adicionarJornalista(Usuario usuario){
-		usuarioValidador.validarFormulario(usuario);
 		Usuario carregado = udao.buscarByLogin(usuario);
 		if(carregado!=null){
+			usuarioValidador.validarLogin(carregado);
 			carregado.getPapeis().add(pdao.buscar(2L));
 			udao.adicionar(carregado);
 		}else{
+			usuarioValidador.validarFormulario(usuario);
 			List<Papel> papeis = new ArrayList<Papel>();
 			papeis.add(pdao.buscar(1L));
 			papeis.add(pdao.buscar(2L));

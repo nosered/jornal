@@ -19,14 +19,17 @@ public class UsuarioValidador {
 		String erroNome = "deve conter apenas letras";
 		String erroEmail = "deve ter um formato válido";
 		String erroLogin = "deve iniciar com letras e possuir no mínimo 4 caracteres";
+		String erroSenha = "deve ser preenchida e possuir no mínimo 6 caracteres";
 		
 		boolean nomeValido = Pattern.compile(NOME_REGEX).matcher(usuario.getNome()).matches();
-		boolean emailValido = Pattern.compile(EMAIL_REGEX).matcher(usuario.getNome()).matches();
-		boolean loginValido = Pattern.compile(LOGIN_REGEX).matcher(usuario.getNome()).matches();
+		boolean emailValido = Pattern.compile(EMAIL_REGEX).matcher(usuario.getEmail()).matches();
+		boolean loginValido = Pattern.compile(LOGIN_REGEX).matcher(usuario.getLogin()).matches();
+		boolean senhaValida = usuario.getSenha().length() >= 6;
 		
 		validador.ensure(nomeValido, new SimpleMessage("usuario.nome.invalido", erroNome, Severity.ERROR));
 		validador.ensure(emailValido, new SimpleMessage("usuario.email.invalido", erroEmail, Severity.ERROR));
 		validador.ensure(loginValido, new SimpleMessage("usuario.login.invalido", erroLogin, Severity.ERROR));
+		validador.ensure(senhaValida, new SimpleMessage("usuario.senha.invalida", erroSenha, Severity.ERROR));
 		
 		validador.onErrorUsePageOf(UsuarioController.class).formularioLeitor();
 	}
@@ -34,7 +37,7 @@ public class UsuarioValidador {
 	public void validarLogin(Usuario usuario){
 		String erroLogin = "deve iniciar com letras e possuir no mínimo 4 caracteres";
 		
-		boolean loginValido = Pattern.compile(LOGIN_REGEX).matcher(usuario.getNome()).matches();
+		boolean loginValido = Pattern.compile(LOGIN_REGEX).matcher(usuario.getLogin()).matches();
 		
 		validador.ensure(loginValido, new SimpleMessage("usuario.nome.invalido", erroLogin, Severity.ERROR));
 		validador.onErrorUsePageOf(UsuarioController.class).formularioLeitor();

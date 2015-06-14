@@ -4,6 +4,7 @@
 <c:if test="${not empty vmessages.success}">
 	<div class="alert alert-dismissible alert-success">
   		<button type="button" class="close" data-dismiss="alert">×</button>
+  		<p class="text-center"><strong>${vmessages.success.from('secao.adicionada')}</strong></p>
   		<p class="text-center"><strong>${vmessages.success.from('usuario.adicionado')}</strong></p>
   		<p class="text-center"><strong>${vmessages.success.from('noticia.adicionada')}</strong></p>
   		<p class="text-center"><strong>${vmessages.success.from('noticia.removida')}</strong></p>

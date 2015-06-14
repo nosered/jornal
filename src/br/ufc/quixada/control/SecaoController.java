@@ -15,11 +15,9 @@ import br.ufc.quixada.util.Autorizacao;
 @Controller
 public class SecaoController {
 	
-	@Inject
-	private SecaoDAO dao;
-	
-	@Inject
-	private Result result;
+	@Inject private SecaoDAO dao;
+	@Inject private SecaoValidador validador;
+	@Inject private Result result;
 	
 	@SimpleBrutauthRules(Autorizacao.class)
 	@AccessLevel(3000)
@@ -29,7 +27,9 @@ public class SecaoController {
 	@SimpleBrutauthRules(Autorizacao.class)
 	@AccessLevel(3000)
 	public void adicionar(Secao secao){
+		validador.validarFormulario(secao);
 		dao.adicionar(secao);
+		validador.confirmarValidacao();
 		result.redirectTo(IndexController.class).index();
 	}
 	

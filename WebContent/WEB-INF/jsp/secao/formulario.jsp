@@ -36,11 +36,13 @@
 				<div class="col-md-4 column">
 						<div class="form-group">
       						<label for="inputTitulo">Titulo</label>
+      						<span style="color:red;">${errors.from('secao.titulo.invalido')}</span>
         					<input class="form-control" id="inputTitulo" name="secao.titulo" type="text" required="required">
     					</div>
 						<div class="form-group">
       						<label for="inputDescricao">Descrição</label>
-        					<input class="form-control" id="inputDescricao" name="secao.subtitulo" type="text" required="required">
+      						<span style="color:red;">${errors.from('secao.descricao.invalida')}</span>
+        					<input class="form-control" id="inputDescricao" name="secao.descricao" type="text" required="required">
     					</div>
     					<div class="form-group pull-right">
         					<button type="reset" class="btn btn-default">Cancelar</button>

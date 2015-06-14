@@ -65,6 +65,7 @@
 				</div>
 				<div class="form-group">
 					 <label for="inputSenha">Senha</label>
+					 <span style="color:red;">${errors.from('usuario.senha.invalida')}</span>
 					 <div class="input-group">
 					 	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 					 	<input class="form-control" id="inputSenha" type="password" name="usuario.senha" required="required">
