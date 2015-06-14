@@ -26,8 +26,8 @@ public class UsuarioDAO implements IUsuarioDAO{
 		return query.getSingleResult();
 	}
 	
-	public Usuario autenticar(Usuario usuario){
-		TypedQuery<Usuario> query = manager.createNamedQuery("usuario.autenticar", Usuario.class);
+	public Usuario buscarByLoginSenha(Usuario usuario){
+		TypedQuery<Usuario> query = manager.createNamedQuery("usuario.porLoginSenha", Usuario.class);
 		query.setParameter("login", usuario.getLogin());
 		query.setParameter("senha", usuario.getSenha());
 		if(query.getResultList().isEmpty()) return null;

@@ -38,6 +38,7 @@
 			<form action="<c:url value='/usuario/adicionarLeitor'/>" role="form" method="POST">
 				<div class="form-group">
 					 <label for="inputNome">Nome completo</label>
+					 <span style="color:red;">${errors.from('usuario.nome.invalido')}</span>
 					 <div class="input-group">
 					 	<span class="input-group-addon"><span class="glyphicon glyphicon-font"></span></span>
 					 	<input class="form-control" id="inputNome" type="text" name="usuario.nome" required="required" autofocus="autofocus">
@@ -45,6 +46,7 @@
 				</div>
 				<div class="form-group">
 					 <label for="inputEmail">E-mail</label>
+					 <span style="color:red;">${errors.from('usuario.email.invalido')}</span>
 					 <div class="input-group">
 					 	<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
 					 	<input class="form-control" id="inputEmail" type="email" name="usuario.email" required="required">
@@ -52,6 +54,7 @@
 				</div>
 				<div class="form-group">
 					 <label for="inputLogin">LogIn</label>
+					 <span style="color:red;">${errors.from('usuario.login.invalido')}</span>
 					 <div class="input-group">
 					 	<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 					 	<input class="form-control" id="inputLogin" type="text" name="usuario.login" required="required">

@@ -14,7 +14,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							<a href="#">Classificados</a>
+							<a href="<c:url value='/classificado/listar'/>">Classificados</a>
 						</li>
 						<li>
 							<a href="#">Contato</a>
@@ -28,7 +28,7 @@
 									<h4 class="modal-title" id="myModalLabel">Realizar LogIn</h4>
 								</div>
 								<div class="modal-body">
-									<form action="<c:url value='/usuario/login'/>" class="form-horizontal" role="form" method="post">
+									<form action="<c:url value='/autenticacao/login'/>" class="form-horizontal" role="form" method="post">
 										<div class="form-group">
 					 						<label for="inputLogin" class="col-sm-2 control-label">Login</label>
 											<div class="col-sm-10">
@@ -56,7 +56,6 @@
 												<div class="col-sm-offset-2 col-sm-10">
 													<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 						 							<button type="submit" class="btn btn-primary">LogIn</button>
-						 							
 												</div>
 											</div>
 							 				<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>-->
@@ -88,7 +87,7 @@
 							<ul class="nav navbar-nav navbar-right">
          						<li class="dropdown" style="min-width:175px"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${usuarioAutenticado.nome}<span class="caret"></span></a>
           							<ul class="dropdown-menu" role="menu" style="min-width: 175px">
-           					 			<li><a href="<c:url value='/usuario/logout'/>">Sair</a></li>
+           					 			<li><a href="<c:url value='/autenticacao/logout'/>">Sair</a></li>
           							</ul>
           						</li>
           						<li>
@@ -102,9 +101,8 @@
          						<li class="dropdown" style="min-width:200px"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${usuarioAutenticado.nome}<span class="caret"></span></a>
           							<ul class="dropdown-menu" role="menu" style="min-width: 200px">
             							<li><a href="<c:url value='/noticia/formulario'/>">Adicionar Notícia</a></li>
-            							<li><a href="#">Remover Notícia</a></li>
            					 			<li class="divider"></li>
-           					 			<li><a href="<c:url value='/usuario/logout'/>">Sair</a></li>
+           					 			<li><a href="<c:url value='/autenticacao/logout'/>">Sair</a></li>
           							</ul>
           						</li>
           						<li>
@@ -119,10 +117,9 @@
           							<ul class="dropdown-menu" role="menu" style="min-width: 200px">
            					 			<li><a href="<c:url value='/secao/formulario'/>">Adicionar Seção</a></li>
             							<li><a href="<c:url value='/usuario/formularioJornalista'/>">Adicionar Jornalista</a></li>
-            							<li><a href="#">Adicionar Classificado</a></li>
-            							<li><a href="#">Remover Notícia</a></li>
+            							<li><a href="<c:url value='/classificado/formulario'/>">Adicionar Classificado</a></li>
            					 			<li class="divider"></li>
-           					 			<li><a href="<c:url value='/usuario/logout'/>">Sair</a></li>
+           					 			<li><a href="<c:url value='/autenticacao/logout'/>">Sair</a></li>
           							</ul>
           						</li>
           						<li>

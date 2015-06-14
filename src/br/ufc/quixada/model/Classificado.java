@@ -6,10 +6,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="classificados")
+@NamedQueries({
+		@NamedQuery(name="classificado.todos",query="SELECT c FROM Classificado c")
+})
 public class Classificado {
 	@Id @GeneratedValue
 	private Long id;
@@ -25,8 +32,9 @@ public class Classificado {
 	private Double valorOferta;
 	@Column(name="data_oferta")
 	private Date dataOferta;
-	@Column(name="autor_oferta")
-	private String autorOferta;
+	@ManyToOne(optional=true)
+	@JoinColumn(name="autor_oferta")
+	private Usuario autorOferta;
 	
 	public Long getId() {
 		return id;
@@ -70,10 +78,10 @@ public class Classificado {
 	public void setDataOferta(Date dataOferta) {
 		this.dataOferta = dataOferta;
 	}
-	public String getAutorOferta() {
+	public Usuario getAutorOferta() {
 		return autorOferta;
 	}
-	public void setAutorOferta(String autorOferta) {
+	public void setAutorOferta(Usuario autorOferta) {
 		this.autorOferta = autorOferta;
 	}
 }

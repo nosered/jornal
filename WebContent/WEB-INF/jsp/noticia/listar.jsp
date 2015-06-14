@@ -27,23 +27,25 @@
 <body>
 	<div class="container">
 		<c:import url="../header.jsp"></c:import>
-		<div class="row clearfix fundo">
+		<div class="row clearfix fundo" style="padding-bottom:35px;">
 			<c:import url="../menu.jsp"></c:import>
 			<div class="col-md-9 column">
 				<ul class="breadcrumb">
 					<li><a href="<c:url value='/' />">Início</a> <span class="divider">/</span></li>
 					<li class="active">${secao.titulo}</li>
 				</ul>
-				<h3 class="success">${vmessages.success.from('noticia.sucesso')}</h3>
+				<!--  <h3 class="success">${vmessages.success.from('noticia.sucesso')}</h3>-->
 				<c:forEach items="${noticiaList}" var="noticia">
 					<div class="col-md-4 column">
-						<img class="img-rounded center-block" alt="140x140" width="140" height="140" src="<c:url value='/uploads/${noticia.imagem}'/>">
-						<!--<img class="img-rounded center-block" alt="140x140" src="http://lorempixel.com/140/140/">-->
-						<h3 class="text-primary text-center">${noticia.titulo}</h3>
-						<h5 class="text-muted text-center">${noticia.subtitulo}</h5>
-						<p>
-							<a class="btn" href="<c:url value="/noticia/ler/${noticia.id}"/>">Ler Notícia</a>
-						</p>
+						<a href="<c:url value="/noticia/ler/${noticia.id}"/>">
+							<img class="img-rounded center-block" alt="140x140" width="140" height="140" src="<c:url value='/uploads/${noticia.imagem}'/>">
+						</a>
+						<h3 class="text-primary text-center">
+							<a href="<c:url value="/noticia/ler/${noticia.id}"/>">${noticia.titulo}</a>
+						</h3>
+						<h5 class="text-muted text-center">
+							<a href="<c:url value="/noticia/ler/${noticia.id}"/>">${noticia.subtitulo}</a>
+						</h5>
 					</div>
 				</c:forEach>
 			</div>

@@ -20,10 +20,6 @@ public class NoticiaDAO implements INoticiaDAO{
 		manager.persist(noticia);
 	}
 
-	public void atualizar(Noticia noticia) {
-		manager.merge(noticia);
-	}
-
 	public void remover(Noticia noticia) {
 		manager.remove(noticia);
 	}

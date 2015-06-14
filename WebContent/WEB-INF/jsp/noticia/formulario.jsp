@@ -19,9 +19,10 @@
 <script type="text/javascript" src="<c:url value='/js/jquery.min.js'/>">
 	
 </script>
-<script type="text/javascript"
-	src="<c:url value='/js/bootstrap.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/bootstrap.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/scripts.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery.maskedinput.min.js'/>"></script>
+
 </head>
 <body>
 <div class="container">
@@ -53,7 +54,13 @@
     					</div>
     					<div class="form-group">
       						<label for="inputData">Data</label>
-        					<input class="form-control" id="inputData" name="noticia.data" placeholder="Exemplo 01/01/2000" type="text" required="required">
+      						<span class="erro">${errors.from('noticia.data.invalida')}</span>
+        					<input class="form-control" id="inputData" name="noticia.data" type="date" pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$" title="Data Inválida" required="required">
+        					<script type="text/javascript">
+        						jQuery(function($){
+       								$("#inputData").mask("99/99/9999");
+								});
+        					</script>
     					</div>
 						<div class="form-group">
 							 <label for="inputImagem">Imagem</label>

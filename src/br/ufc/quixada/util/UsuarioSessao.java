@@ -10,13 +10,14 @@ import br.ufc.quixada.model.Usuario;
 
 @Named("usuarioAutenticado")
 @SessionScoped
-public class UsuarioAutenticado implements Serializable{
+public class UsuarioSessao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private Papel papel;
 	
 	public boolean isPermitido(long nivel){
+		if(usuario==null) return false;
 		return papel.getNivel()==nivel;
 	}
 	

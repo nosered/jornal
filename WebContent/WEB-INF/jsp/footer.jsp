@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="row clearfix fundo">
+<div class="row clearfix well">
 	<div class="col-md-4 column">
 		<p class="text-muted">
 			<strong>© Copyright 2015 Quixadá Comunicação e Participações

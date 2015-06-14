@@ -49,7 +49,7 @@
 
 	<div class="container">
 	<c:import url="../header.jsp"></c:import>
-	<div class="row clearfix fundo">
+	<div class="row clearfix fundo" style="padding-bottom:35px;">
 		<c:import url="../menu.jsp"></c:import>
 		<div class="col-md-9 column">
 			<div class="row clearfix">
@@ -86,13 +86,34 @@
 						<small><cite>${noticia.autor.nome}</cite></small>
 					</blockquote>
 					<c:if test="${usuarioAutenticado.usuario.id == noticia.autor.id or usuarioAutenticado.papel.nivel == 3000}">
-						<a class="btn btn-primary" role="button" href="<c:url value='/usuario/remover/${noticia.id}'/>">Remover Notícia</a>
+						<!--<a id="modal-65558" href="#modal-container-65558" role="button" class="btn" data-toggle="modal">Launch demo modal</a>-->
+						<a id="modal-65558" class="btn btn-primary" role="button" href="#modal-container-65558" data-toggle="modal">Remover Notícia</a>
+						<div class="modal fade" id="modal-container-65558" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+							 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+									</div>
+									<div class="modal-body">
+										Confirma a remoção da notícia?
+									</div>
+									<div class="modal-footer">
+										<form action="<c:url value='/noticia/remover/${noticia.id}'/>">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+											<button type="submit" class="btn btn-primary">Remover</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--<a class="btn btn-primary" role="button" href="<c:url value='/usuario/remover/${noticia.id}'/>">Remover Notícia</a>-->
 					</c:if>
 				</div>
 			</div>
 			<div class="row clearfix" style="padding-top:30px;padding-bottom:20px;">
 				<div class="col-md-12 column">
-					<p>
+					<p style="text-align:justify; text-indent:50px; padding-left:25px; padding-right:25px;">
 						${noticia.texto}
 					</p>
 				</div>
@@ -112,6 +133,7 @@
 		</div>
 	</div>
 </div>
+<c:import url="../footer.jsp"></c:import>
 </div>
 </body>
 </html>

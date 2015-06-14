@@ -15,9 +15,6 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
-import br.com.caelum.vraptor.validator.Severity;
-import br.com.caelum.vraptor.validator.SimpleMessage;
-import br.com.caelum.vraptor.validator.Validator;
 import br.ufc.quixada.dao.NoticiaDAO;
 import br.ufc.quixada.model.Noticia;
 import br.ufc.quixada.model.Secao;
@@ -34,15 +31,16 @@ public class NoticiaController {
 	@Inject
 	private ServletContext context;
 	@Inject
-	private Validator validador;
+	private NoticiaValidador validador;
 	
 	@SimpleBrutauthRules(Autorizacao.class)
 	@AccessLevel(2000)
 	public void formulario(){
 	}
 	
-	
 	@Post
+	@SimpleBrutauthRules(Autorizacao.class)
+	@AccessLevel(2000)
 	public void adicionar(Noticia noticia, Secao secao,Usuario autor, UploadedFile imagem){
 		File arquivo = new File(context.getRealPath("uploads/"), imagem.getFileName());
 		try {
@@ -50,26 +48,22 @@ public class NoticiaController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//noticia.setData(new Date());
 		noticia.setImagem(arquivo.getName());
 		noticia.setSecao(secao);
 		noticia.setAutor(autor);
+		validador.validarFormulario(noticia);
 		dao.adicionar(noticia);
-		validador.add(new SimpleMessage("noticia.sucesso", "Notícia cadastrada com sucesso!",Severity.SUCCESS));
-		resultado.redirectTo(this).listar(secao);
+		validador.confirmaValidacao();
+		resultado.redirectTo(IndexController.class).index();
 	}
 	
-	public void atualizar(Noticia noticia){
-		
-	}
-	
+	@Get
+	@Path("/noticia/remover/{noticia.id}")
 	public void remover(Noticia noticia){
-		
+		dao.remover(dao.buscar(noticia.getId()));
+		validador.confirmaRemocao();
+		resultado.redirectTo(IndexController.class).index();
 	}
-	
-	/*public List<Noticia> listar(){
-		return dao.listar();
-	}*/
 	
 	@Get
 	@Path("/noticia/listar/{secao.id}")
@@ -79,6 +73,7 @@ public class NoticiaController {
 		resultado.include("secao", secao);
 		return noticiaList;
 	}
+	
 	@Get
 	@Path("/noticia/ler/{noticia.id}")
 	public Noticia ler(Noticia noticia){

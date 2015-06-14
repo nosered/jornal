@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="usuarios")
 @NamedQueries({
 	@NamedQuery(name="usuario.porLogin",query="SELECT u FROM Usuario u WHERE u.login = :login"),
-	@NamedQuery(name="usuario.autenticar", query="SELECT u FROM Usuario u WHERE u.login = :login AND u.senha = :senha")
+	@NamedQuery(name="usuario.porLoginSenha", query="SELECT u FROM Usuario u WHERE u.login = :login AND u.senha = :senha")
 })
 public class Usuario {
 	@Id @GeneratedValue
