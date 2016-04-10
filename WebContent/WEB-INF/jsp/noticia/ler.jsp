@@ -73,7 +73,7 @@
 			</div>
 			<div class="row clearfix">
 				<div class="col-md-6 column">
-					<img class="img-rounded center-block" alt="140x140" width="350" height="250" src="<c:url value='/uploads/${noticia.imagem}'/>">
+					<img class="img-rounded center-block" alt="140x140" width="350" height="250" src="<c:url value='/noticia/imagem/${noticia.imagem}'/>">
 				</div>
 				<div class="col-md-6 column">
 					<h1 class="text-primary">
@@ -85,7 +85,7 @@
 					<blockquote class="pull-left">
 						<small><cite>${noticia.autor.nome}</cite></small>
 					</blockquote>
-					<c:if test="${usuarioAutenticado.usuario.id == noticia.autor.id or usuarioAutenticado.papel.nivel == 3000}">
+					<c:if test="${(usuarioAutenticado.usuario.id == noticia.autor.id and usuarioAutenticado.papel.nivel == 2000) or usuarioAutenticado.papel.nivel == 3000}">
 						<!--<a id="modal-65558" href="#modal-container-65558" role="button" class="btn" data-toggle="modal">Launch demo modal</a>-->
 						<a id="modal-65558" class="btn btn-primary" role="button" href="#modal-container-65558" data-toggle="modal">Remover Notícia</a>
 						<div class="modal fade" id="modal-container-65558" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

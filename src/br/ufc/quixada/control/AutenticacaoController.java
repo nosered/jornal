@@ -2,6 +2,8 @@ package br.ufc.quixada.control;
 
 import javax.inject.Inject;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -22,6 +24,8 @@ public class AutenticacaoController {
 
 	@Post
 	public void login(Usuario usuario, Long papel){
+		String hash = DigestUtils.sha256Hex(usuario.getSenha());
+		usuario.setSenha(hash);
 		Usuario usuarioCarregado = udao.buscarByLoginSenha(usuario);
 		Papel papelCarregado = pdao.buscar(papel);
 		validador.validarAutenticacao(usuarioCarregado,papelCarregado);

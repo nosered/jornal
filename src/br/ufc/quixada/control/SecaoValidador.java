@@ -11,7 +11,7 @@ import br.ufc.quixada.model.Secao;
 
 public class SecaoValidador{
 	
-	private final String TEXTO_REGEX = "^([a-zA-Z]+{2,250}$";
+	private final String TEXTO_REGEX = "^([a-zA-Zà-úÀ-Ú])+([a-zA-Zà-úÀ-Ú ])*$";
 	@Inject private Validator validador;
 	
 	public void validarFormulario(Secao secao){

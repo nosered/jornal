@@ -10,8 +10,9 @@ import br.com.caelum.vraptor.validator.Validator;
 import br.ufc.quixada.model.Usuario;
 
 public class UsuarioValidador {
-	private final String NOME_REGEX = "^[a-zA-Z]+\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*$";
-	private final String EMAIL_REGEX = "^[a-zA-Z]+@[a-zA-Z]+\\.[a-zA-Z]+$";
+	private final String NOME_REGEX = "^[a-zA-Zà-úÀ-Ú]+[a-zA-Zà-úÀ-Ú ]*$";
+	//private final String NOME_REGEX = "^[a-zA-Z]+\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*\\s*[a-zA-Z]*$";
+	private final String EMAIL_REGEX = "^[a-zA-Z]+[a-zA-Z0-9]*([._]{0,1}[a-zA-Z0-9]+){0,3}@[a-zA-Z]+[a-zA-Z0-9]*.[a-zA-Z]+$";
 	private final String LOGIN_REGEX = "^([a-zA-Z]+[a-zA-Z0-9]*){4,20}$";
 	@Inject private Validator validador;
 	
@@ -44,6 +45,6 @@ public class UsuarioValidador {
 	}
 	
 	public void confirmar(){
-		validador.add(new SimpleMessage("usuario.sucesso", "Usuário foi adicionado com sucesso!", Severity.SUCCESS));
+		validador.add(new SimpleMessage("usuario.adicionado", "Usuário foi adicionado com sucesso!", Severity.SUCCESS));
 	}
 }

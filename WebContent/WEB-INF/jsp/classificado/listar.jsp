@@ -75,7 +75,7 @@
 									</div>
 									<div class="col-md-3 column">
 										<c:if test="${usuarioAutenticado.papel.nivel==1000}">
-										<form action="<c:url value='/classificado/atualizar' />" role="form" method="POST">
+										<form action="<c:url value='/classificado/ofertar' />" role="form" method="POST">
 											<input type="hidden" name="classificado.id" value="${classificado.id}"/>
 											<input type="hidden" name="autor.id" value="${usuarioAutenticado.usuario.id}"/>
 											<div class="form-group">

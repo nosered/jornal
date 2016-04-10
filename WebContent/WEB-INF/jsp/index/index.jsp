@@ -35,7 +35,8 @@
 				<c:forEach var="noticia" items="${noticiaList}">
 					<div class="col-md-4 column altura-min">
 						<a href="<c:url value="/noticia/ler/${noticia.id}"/>">
-							<img class="img-rounded center-block" alt="140x140" width="140" height="140" src="<c:url value='/uploads/${noticia.imagem}'/>">
+							<!--<img class="img-rounded center-block" alt="140x140" width="140" height="140" src="<c:url value='/uploads/${noticia.imagem}'/>">-->
+							<img class="img-rounded center-block" alt="140x140" width="140" height="140" src="<c:url value='/noticia/imagem/${noticia.imagem}'/>">
 						</a>
 						<h3 class="text-primary text-center">
 							<a href="<c:url value="/noticia/ler/${noticia.id}"/>">${noticia.titulo}</a>

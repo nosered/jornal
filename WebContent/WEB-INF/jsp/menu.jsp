@@ -6,7 +6,7 @@
 		</div>
 		<div class="list-group">
 			<!-- <a href="<c:url value='/noticia/listar'/>" class="list-group-item">Todas</a> -->
-			<c:forEach items="${menu.secoes}" var="secao" >
+			<c:forEach items="${secaoList}" var="secao" >
 				<a href="<c:url value='/noticia/listar/${secao.id}'/>" class="list-group-item">${secao.titulo}</a>
 			</c:forEach>
 			<!--<a href="<c:url value='/secao/formulario'/>" class="list-group-item">Adicionar Seção</a>-->

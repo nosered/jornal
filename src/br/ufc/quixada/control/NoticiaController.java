@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
 
 import br.com.caelum.brutauth.auth.annotations.AccessLevel;
 import br.com.caelum.brutauth.auth.annotations.SimpleBrutauthRules;
@@ -15,11 +14,13 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
+import br.ufc.quixada.annotation.MenuSecoes;
 import br.ufc.quixada.dao.NoticiaDAO;
 import br.ufc.quixada.model.Noticia;
 import br.ufc.quixada.model.Secao;
 import br.ufc.quixada.model.Usuario;
-import br.ufc.quixada.util.Autorizacao;
+import br.ufc.quixada.util.AutenticacaoRule;
+import br.ufc.quixada.util.AutorizacaoRule;
 
 @Controller
 public class NoticiaController {
@@ -28,21 +29,22 @@ public class NoticiaController {
 	private NoticiaDAO dao;
 	@Inject
 	private Result resultado;
-	@Inject
-	private ServletContext context;
+	//@Inject
+	//private ServletContext context;
 	@Inject
 	private NoticiaValidador validador;
 	
-	@SimpleBrutauthRules(Autorizacao.class)
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
 	@AccessLevel(2000)
 	public void formulario(){
 	}
 	
 	@Post
-	@SimpleBrutauthRules(Autorizacao.class)
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
 	@AccessLevel(2000)
 	public void adicionar(Noticia noticia, Secao secao,Usuario autor, UploadedFile imagem){
-		File arquivo = new File(context.getRealPath("uploads/"), imagem.getFileName());
+		File arquivo = new File("/home/ederson/uploads/", imagem.getFileName());
+		//File arquivo = new File(context.getRealPath("uploads/"), imagem.getFileName());
 		try {
 			imagem.writeTo(arquivo);
 		} catch (IOException e) {
@@ -59,6 +61,8 @@ public class NoticiaController {
 	
 	@Get
 	@Path("/noticia/remover/{noticia.id}")
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
+	@AccessLevel(2000)
 	public void remover(Noticia noticia){
 		dao.remover(dao.buscar(noticia.getId()));
 		validador.confirmaRemocao();
@@ -67,6 +71,7 @@ public class NoticiaController {
 	
 	@Get
 	@Path("/noticia/listar/{secao.id}")
+	@MenuSecoes
 	public List<Noticia> listar(Secao secao){
 		List<Noticia> noticiaList = dao.listar(secao);
 		if(!noticiaList.isEmpty()) secao = noticiaList.get(0).getSecao();
@@ -76,7 +81,14 @@ public class NoticiaController {
 	
 	@Get
 	@Path("/noticia/ler/{noticia.id}")
+	@MenuSecoes
 	public Noticia ler(Noticia noticia){
 		return dao.buscar(noticia.getId());
+	}
+	
+	@Get
+	@Path("/noticia/imagem/{noticia.imagem}")
+	public File imagemDownloader(Noticia noticia){
+		return new File("/home/ederson/uploads", noticia.getImagem());
 	}
 }

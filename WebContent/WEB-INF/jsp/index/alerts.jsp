@@ -25,6 +25,7 @@
   		<p class="text-center"><strong>${errors.from('usuario.nao.autenticado')}</strong></p>
   		<p class="text-center"><strong>${errors.from('papel.nao.autorizado')}</strong></p>
   		<p class="text-center"><strong>${errors.from('autorizacao.invalida')}</strong></p>
+  		<p class="text-center"><strong>${errors.from('autenticacao.invalida')}</strong></p>
   		
 	</div>
 </c:if>

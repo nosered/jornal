@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label for="selectSecao">Seção</label>
 							<select name="secao.id" id="selectSecao">
-								<c:forEach items="${menu.secoes}" var="secaovar">
+								<c:forEach items="${secaoList}" var="secaovar">
 									<option value="${secaovar.id}">${secaovar.titulo}</option>
 								</c:forEach>
 							</select>
@@ -55,7 +55,7 @@
     					<div class="form-group">
       						<label for="inputData">Data</label>
       						<span class="erro">${errors.from('noticia.data.invalida')}</span>
-        					<input class="form-control" id="inputData" name="noticia.data" type="date" pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$" title="Data Inválida" required="required">
+        					<input class="form-control" id="inputData" name="noticia.data" type="text" pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$" title="Data Inválida" required="required">
         					<script type="text/javascript">
         						jQuery(function($){
        								$("#inputData").mask("99/99/9999");

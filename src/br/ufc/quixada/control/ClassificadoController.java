@@ -5,12 +5,16 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-
+import br.com.caelum.brutauth.auth.annotations.AccessLevel;
+import br.com.caelum.brutauth.auth.annotations.SimpleBrutauthRules;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
+import br.ufc.quixada.annotation.MenuSecoes;
 import br.ufc.quixada.dao.ClassificadoDAO;
 import br.ufc.quixada.model.Classificado;
 import br.ufc.quixada.model.Usuario;
+import br.ufc.quixada.util.AutenticacaoRule;
+import br.ufc.quixada.util.AutorizacaoRule;
 import br.ufc.quixada.util.Oferta;
 
 @Controller
@@ -20,8 +24,12 @@ public class ClassificadoController {
 	@Inject private ClassificadoValidador validador;
 	@Inject private Result resultado;
 	
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
+	@AccessLevel(3000)
 	public void formulario(){}
 	
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
+	@AccessLevel(3000)
 	public void adicionar(Classificado classificado){
 		validador.validarFormulario(classificado);
 		classificado.setDataOferta(null);
@@ -32,11 +40,14 @@ public class ClassificadoController {
 		resultado.redirectTo(ClassificadoController.class).listar();
 	}
 	
+	@MenuSecoes
 	public List<Classificado> listar(){
 		return dao.listar();
 	};
 	
-	public void atualizar(Classificado classificado, Oferta oferta, Usuario autor){
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
+	@AccessLevel(1000)
+	public void ofertar(Classificado classificado, Oferta oferta, Usuario autor){
 		classificado = dao.buscar(classificado.getId());
 		oferta.setAutor(autor);
 		oferta.setData(new Date());

@@ -10,7 +10,8 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
 import br.ufc.quixada.dao.SecaoDAO;
 import br.ufc.quixada.model.Secao;
-import br.ufc.quixada.util.Autorizacao;
+import br.ufc.quixada.util.AutenticacaoRule;
+import br.ufc.quixada.util.AutorizacaoRule;
 
 @Controller
 public class SecaoController {
@@ -19,12 +20,12 @@ public class SecaoController {
 	@Inject private SecaoValidador validador;
 	@Inject private Result result;
 	
-	@SimpleBrutauthRules(Autorizacao.class)
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
 	@AccessLevel(3000)
 	public void formulario(){
 	}
 	
-	@SimpleBrutauthRules(Autorizacao.class)
+	@SimpleBrutauthRules({AutenticacaoRule.class, AutorizacaoRule.class})
 	@AccessLevel(3000)
 	public void adicionar(Secao secao){
 		validador.validarFormulario(secao);
